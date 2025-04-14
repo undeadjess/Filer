@@ -17,6 +17,12 @@ if (!fs.existsSync(DATA_FOLDER)) {
     fs.mkdirSync(DATA_FOLDER);
 }
 
+// TEMPORARY
+// serve a simple frontend page ../frontend/public/index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
+});
+
 
 // authentication
 users = []

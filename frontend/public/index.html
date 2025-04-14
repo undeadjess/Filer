@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Frontend</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    .hidden { display: none; }
+    form { margin-bottom: 20px; }
+    label { display: block; margin-top: 5px; }
+    input, select { padding: 5px; margin: 5px 0; }
+    button { padding: 5px 10px; }
+  </style>
+</head>
+<body>
+  <h1>API Frontend</h1>
+  <!-- Authentication forms -->
+  <div id="auth">
+    <h2>Register</h2>
+    <form id="registerForm">
+      <label for="regUsername">Username:</label>
+      <input type="text" id="regUsername" required>
+      <label for="regPassword">Password:</label>
+      <input type="password" id="regPassword" required>
+      <button type="submit">Register</button>
+    </form>
+
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="loginUsername">Username:</label>
+      <input type="text" id="loginUsername" required>
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <!-- File operations (hidden until logged in) -->
+  <div id="fileOps" class="hidden">
+    <h2>File Operations</h2>
+    <p id="welcomeMsg"></p>
+    <button id="listFilesBtn">List Files (Root)</button>
+    <div id="filesList"></div>
+
+    <h3>Create New File or Folder</h3>
+    <form id="createForm">
+      <label for="createPath">Relative Path:</label>
+      <input type="text" id="createPath" placeholder="e.g., folder/newfile.txt" required>
+      <label for="createType">Type:</label>
+      <select id="createType">
+        <option value="file">File</option>
+        <option value="folder">Folder</option>
+      </select>
+      <button type="submit">Create</button>
+    </form>
+
+    <h3>Delete File or Folder</h3>
+    <form id="deleteForm">
+      <label for="deletePath">Relative Path:</label>
+      <input type="text" id="deletePath" placeholder="e.g., folder/newfile.txt" required>
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+
+  <script>
+    let token = null; 
+
+    // elements
+    const authDiv = document.getElementById('auth');
+    const fileOpsDiv = document.getElementById('fileOps');
+    const welcomeMsg = document.getElementById('welcomeMsg');
+    const filesListDiv = document.getElementById('filesList');
+
+    // registration form event handler
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('regUsername').value;
+      const password = document.getElementById('regPassword').value;
+      try {
+        const res = await fetch('/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        alert(data.message || data.error);
+      } catch (err) {
+        console.error(err);
+        alert('Registration failed.');
+      }
+    });
+
+    // login form event handler
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (data.token) {
+          token = data.token;
+          authDiv.classList.add('hidden');
+          fileOpsDiv.classList.remove('hidden');
+          welcomeMsg.textContent = 'Welcome, ' + username + '!';
+        }
+        alert(data.message || data.error);
+      } catch (err) {
+        console.error(err);
+        alert('Login failed.');
+      }
+    });
+
+    // list files event handler (only for root directory cause its 1am and im lazy)
+    document.getElementById('listFilesBtn').addEventListener('click', async () => {
+      try {
+        const res = await fetch('/files/', {
+          method: 'GET',
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        const data = await res.json();
+        if (data.error) { 
+          alert(data.error);
+          return;
+        }
+        filesListDiv.innerHTML = '';
+
+        if (data.type === 'folder') {
+          const ul = document.createElement('ul');
+          data.files.forEach(file => {
+            const li = document.createElement('li');
+            li.textContent = file.name + ' (' + file.type + ')';
+            ul.appendChild(li);
+          });
+          filesListDiv.appendChild(ul);
+        } else {
+          filesListDiv.textContent = data;
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error fetching file list.');
+      }
+    });
+
+    // create file or folder event handler
+    document.getElementById('createForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const createPath = document.getElementById('createPath').value;
+      const createType = document.getElementById('createType').value;
+      try {
+        const url = '/files/' + createPath + '?type=' + createType;
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        const data = await res.json();
+        alert(data.message || data.error);
+      } catch (err) {
+        console.error(err);
+        alert('Error creating file/folder.');
+      }
+    });
+
+    // dolete file or folder event handler
+    document.getElementById('deleteForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const deletePath = document.getElementById('deletePath').value;
+      try {
+        const url = '/files/' + deletePath;
+        const res = await fetch(url, {
+          method: 'DELETE',
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        const data = await res.json();
+        alert(data.message || data.error);
+      } catch (err) {
+        console.error(err);
+        alert('Error deleting file/folder.');
+      }
+    });
+  </script>
+</body>
+</html>
