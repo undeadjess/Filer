@@ -1,0 +1,21 @@
+{
+  "name": "filer-backend",
+  "version": "0.0.1",
+  "description": "web-based cloud storage that dosent suck",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/undeadjess/filer"
+  },
+  "keywords": [
+    "filer"
+  ],
+  "author": "Jessica S.",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
