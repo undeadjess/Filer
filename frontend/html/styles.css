@@ -5,17 +5,30 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f1f3f4;
-    color: #202124;
+/* Define consolidated color variables */
+:root {
+    --main-bg-color: #f1f3f4;         /* main background color */
+    --secondary-bg-color: #ffffff;    /* header, sidebar, and popup background */
+    --accent-color: #f1f3f4;          /* path bar and accent elements */
+    --button-color: #669eff;          /* button blue */
+    --button-hover-color: #5a8de0;    /* button hover blue */
+    --button-active-color: #4b7dc3;   /* button active blue */
+    --item-hover-color: #fbfbfb;       /* hover color for items */
+    --text-color: #202124;            /* dark text for light backgrounds */
+    --text-contrast-color: white;      /* light text for dark backgrounds */
 }
 
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+}
 
 /* INPUTS */
 button {
-    background-color: #669eff;
-    color: white;
+    background-color: var(--button-color);
+    color: var(--text-contrast-color);
     border: none;
     padding: 8px 16px;
     border-radius: calc(64px / 2);
@@ -23,13 +36,12 @@ button {
 }
 
 button:hover {
-    background-color: #5a8de0;
+    background-color: var(--button-hover-color);
 }
 
 button:active {
-    background-color: #4b7dc3;
+    background-color: var(--button-active-color);
 }
-
 
 input[type="text"] {
     padding: 5px;
@@ -38,11 +50,9 @@ input[type="text"] {
     width: 100%;
 }
 
-
-
 /* HEADER */
 header {
-    background-color: #ffffff;
+    background-color: var(--secondary-bg-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -66,24 +76,21 @@ header {
     width: 48px;
     border-radius: 50%;
     object-fit: cover;
-    border: #202124 2px solid;
+    border: var(--text-color) 2px solid;
 }
-
 
 /* MAIN */
 .sidebar-left {
     width: 200px;
-    background-color: #ffffff;
-    padding: 16px; 
+    background-color: var(--secondary-bg-color);
+    padding: 16px;
     display: flex;
     flex-direction: column;
     height: calc(100vh - 64px); /* full height minus header */
     position: fixed;
     left: 0;
     border-right: 1px solid #ddd;
-
-    gap: 6px; 
-
+    gap: 6px;
 }
 
 /* path and view options */
@@ -101,12 +108,12 @@ header {
 .path-item {
     padding: 8px 16px;
     border-radius: calc(64px / 2);
-    background-color: #f1f3f4;
+    background-color: var(--accent-color);
     cursor: pointer;
 }
 
 .path-item:hover {
-    background-color: #e8eaed;
+    background-color: var(--item-hover-color);
 }
 
 .current-view {
@@ -120,8 +127,6 @@ header {
     align-items: center;
 }
 
-
-
 /* Files and Folders */
 .file-item {
     display: flex;
@@ -129,8 +134,10 @@ header {
     padding: 8px;
     border-radius: calc(64px / 2);
     cursor: pointer;
-    background-color: #ffffff;
+    background-color: var(--secondary-bg-color);
 }
+
 .file-item:hover {
-    background-color: #fbfbfb;
+    background-color: var(--item-hover-color);
 }
+
