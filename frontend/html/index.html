@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Filer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Filer</h1>
+        <div class="searchbar">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button id="searchButton">Search</button>
+        </div>
+        <div class="header-right">
+            <div class="header-buttons">
+                <button id="helpButton">Help</button>
+                <button id="settingsButton">Settings</button>
+            </div>
+            <div class="profileIcon">
+                <img src="assets/images/genericPFP.jpg" alt="Profile Icon">
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="sidebar-left">
+            <button id="homeButton">Home</button>
+            <button id="favoritesButton">Favorites</button>
+            <button id="recentButton">Recent</button>
+            <button id="trashButton">Trash</button>
+        </div>
+        <div class="content">
+            <div class="current-view">
+                <div class="path-bar">
+                    <span class="path-item"><h2>My Files</h2></span>
+                </div>
+                <div class="current-view-right">
+                    <div class="view-mode">
+                        <button id="gridViewButton">Grid View</button>
+                        <button id="listViewButton">List View</button>
+                    </div>
+                    <button id="toggleInfoPanelButton">Info</button>
+                </div>
+            </div>
+            <div class="file-list">
+            </div>
+        </div>
+        <div class="infoPanel">
+            <!-- file preview - TODO -->
+        </div>
+</body>

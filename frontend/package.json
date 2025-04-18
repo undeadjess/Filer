@@ -1,0 +1,14 @@
+{
+  "name": "filer-frontend",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jessica S",
+  "license": "GPL-3.0",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

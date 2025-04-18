@@ -1,0 +1,136 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f3f4;
+    color: #202124;
+}
+
+
+/* INPUTS */
+button {
+    background-color: #669eff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: calc(64px / 2);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5a8de0;
+}
+
+button:active {
+    background-color: #4b7dc3;
+}
+
+
+input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: calc(64px / 2);
+    width: 100%;
+}
+
+
+
+/* HEADER */
+header {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 64px;
+    padding: 0 16px;
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* spacing between buttons and profile */
+}
+
+.profileIcon img {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: #202124 2px solid;
+}
+
+
+/* MAIN */
+.sidebar-left {
+    width: 200px;
+    background-color: #ffffff;
+    padding: 16px; 
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 64px); /* full height minus header */
+    position: fixed;
+    left: 0;
+    border-right: 1px solid #ddd;
+
+    gap: 6px; 
+
+}
+
+/* path and view options */
+.content {
+    margin-left: 200px; /* same as sidebar width */
+    padding: 16px;
+}
+
+.path-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* spacing between path items */
+}
+
+.path-item {
+    padding: 8px 16px;
+    border-radius: calc(64px / 2);
+    background-color: #f1f3f4;
+    cursor: pointer;
+}
+
+.path-item:hover {
+    background-color: #e8eaed;
+}
+
+.current-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-view-right {
+    display: flex;
+    align-items: center;
+}
+
+
+
+/* Files and Folders */
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: calc(64px / 2);
+    cursor: pointer;
+    background-color: #ffffff;
+}
+.file-item:hover {
+    background-color: #fbfbfb;
+}
