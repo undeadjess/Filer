@@ -99,6 +99,7 @@ function renderFiles(files) {
                 openFolder([...currentPath, file.name]);
             } else {
                 previewFile(file.name);
+
             }
         });
 
@@ -172,6 +173,78 @@ function setupPopStateListener() {
 }
 
 function previewFile(fileName) {
-    // TODO
-    console.log('Previewing file:', fileName);
+    const overlay = document.querySelector('.preview-overlay');
+    const body = document.querySelector('.preview-body');
+    const downloadBtn = document.getElementById('preview-download');
+    const printBtn = document.getElementById('preview-print');
+    const closeBtn = document.getElementById('preview-close');
+
+    const pathArray = getCurrentPathArray();
+    const filePath = [...pathArray, fileName].join('/');
+    const fileUrl = `http://localhost:3000/files/${filePath}`;
+
+    body.innerHTML = '';
+    overlay.classList.remove('hidden'); 
+
+    fetch(fileUrl, {
+        headers: {
+            'Authorization': `Bearer ${jwt}`
+        }
+    })
+    .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch file');
+        return res.blob();
+    })
+    .then(blob => {
+        const blobUrl = URL.createObjectURL(blob);
+
+        if (/\.(png|jpe?g|gif|bmp)$/i.test(fileName)) {
+            const img = document.createElement('img');
+            img.src = blobUrl;
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = '100%';
+            body.appendChild(img);
+        } else {
+            const iframe = document.createElement('iframe');
+            iframe.src = blobUrl;
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.border = 'none';
+            body.appendChild(iframe);
+        }
+
+        downloadBtn.onclick = () => {
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = fileName; 
+            a.click();
+        };
+
+        printBtn.onclick = () => {
+            if (fileName.endsWith('.pdf')) {
+                const printWindow = window.open(blobUrl, '_blank');
+                printWindow?.print();
+            } else if (/\.(png|jpe?g|gif|bmp)$/i.test(fileName)) {
+                const printWindow = window.open(blobUrl, '_blank');
+                printWindow?.print();
+            } else {
+                const iframe = document.createElement('iframe');
+                iframe.src = blobUrl;
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+                document.body.appendChild(iframe);
+                iframe.contentWindow?.print();
+            }
+        };
+    })
+    .catch(err => {
+        console.error('Preview error:', err);
+        body.innerHTML = '<p>Failed to preview file.</p>';
+    });
+
+    closeBtn.onclick = () => {
+        overlay.classList.add('hidden');
+        body.innerHTML = '';
+    };
 }

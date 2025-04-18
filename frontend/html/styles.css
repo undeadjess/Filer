@@ -141,3 +141,48 @@ header {
     background-color: var(--item-hover-color);
 }
 
+/* PREVIEW */
+.preview-main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--secondary-bg-color);
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview-content {
+    background: var(--secondary-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.preview-body {
+    flex: 1;
+    overflow: auto;
+}
+
+.hidden {
+    display: none;
+}

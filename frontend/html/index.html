@@ -47,7 +47,24 @@
             <div class="file-list">
             </div>
         </div>
-        <div class="infoPanel">
-            <!-- file preview - TODO -->
+        <div class="infoPanel" hidden>
+            <h2>File Information</h2>
         </div>
+    </main>
+
+    <div class="preview-overlay hidden">
+        <div class="preview-main">
+            <div class="preview-content">
+                <div class="preview-body"></div>
+            </div>
+        </div>
+        <div class="preview-header">
+            <h2>File Preview</h2>
+            <div class="preview-controls">
+                <button id="preview-download">Download</button>
+                <button id="preview-print">Print</button>
+                <button id="preview-close">Close</button>
+            </div>
+        </div>
+    </div>
 </body>
