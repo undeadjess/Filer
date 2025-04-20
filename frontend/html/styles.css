@@ -10,9 +10,9 @@
     --main-bg-color: #f1f3f4;         /* main background color */
     --secondary-bg-color: #ffffff;    /* header, sidebar, and popup background */
     --accent-color: #f1f3f4;          /* path bar and accent elements */
-    --button-color: #669eff;          /* button blue */
-    --button-hover-color: #5a8de0;    /* button hover blue */
-    --button-active-color: #4b7dc3;   /* button active blue */
+    --button-color: #83aefa;          /* button blue */
+    --button-hover-color: #6e9ae1;    /* button hover blue */
+    --button-active-color: #496d9f;   /* button active blue */
     --item-hover-color: #fbfbfb;       /* hover color for items */
     --text-color: #202124;            /* dark text for light backgrounds */
     --text-contrast-color: white;      /* light text for dark backgrounds */
@@ -29,6 +29,7 @@ body {
 button {
     background-color: var(--button-color);
     color: var(--text-contrast-color);
+    text-align: left;
     border: none;
     padding: 8px 16px;
     border-radius: calc(64px / 2);
@@ -135,6 +136,7 @@ header {
     border-radius: calc(64px / 2);
     cursor: pointer;
     background-color: var(--secondary-bg-color);
+    margin-top: 5px;
 }
 
 .file-item:hover {
