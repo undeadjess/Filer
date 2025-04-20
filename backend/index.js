@@ -17,12 +17,6 @@ if (!fs.existsSync(DATA_FOLDER)) {
     fs.mkdirSync(DATA_FOLDER);
 }
 
-// TEMPORARY
-// serve a simple frontend page ../frontend/public/index.html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
-});
-
 
 // authentication
 users = []
@@ -70,6 +64,20 @@ app.post('/login', async (req, res) => {
     const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: '1h' });
 
     res.json({ message: 'Login successful', token });
+});
+
+// logout endpoint
+// POST /logout - logout a user
+// request body: { "username": "user" }
+app.post('/logout', (req, res) => {
+    const { username } = req.body;
+
+    // Invalidate the token by not storing it or using a blacklist
+    // For simplicity, we won't implement token invalidation here
+
+    res.json({ message: 'Logout successful' });
+
+    console.log(`User ${username} logged out`);
 });
 
 
