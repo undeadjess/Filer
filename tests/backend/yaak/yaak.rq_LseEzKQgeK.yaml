@@ -1,0 +1,26 @@
+type: http_request
+model: http_request
+id: rq_LseEzKQgeK
+createdAt: 2025-04-28T00:30:36.200115
+updatedAt: 2025-04-28T01:18:16.596149
+workspaceId: wk_eJagkGXKjz
+folderId: null
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "username": "test"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: Q0vsraCZ6S
+method: POST
+name: Logout
+sortPriority: 1750.0
+url: http://localhost:3000/logout
+urlParameters: []

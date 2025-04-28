@@ -1,0 +1,27 @@
+type: http_request
+model: http_request
+id: rq_MerywAtuar
+createdAt: 2025-04-28T00:23:06.833899
+updatedAt: 2025-04-28T01:18:12.898613
+workspaceId: wk_eJagkGXKjz
+folderId: null
+authentication: {}
+authenticationType: null
+body:
+  text: |-
+    {
+      "username": "test",
+      "password": "test"
+    }
+bodyType: application/json
+description: ''
+headers:
+- enabled: true
+  name: Content-Type
+  value: application/json
+  id: null
+method: POST
+name: Login
+sortPriority: 500.0
+url: http://localhost:3000/login
+urlParameters: []

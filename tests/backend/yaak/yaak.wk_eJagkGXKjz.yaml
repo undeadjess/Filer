@@ -1,0 +1,10 @@
+type: workspace
+model: workspace
+id: wk_eJagkGXKjz
+createdAt: 2025-04-28T00:20:48.703957
+updatedAt: 2025-04-28T00:20:48.703957
+name: Filer Backend
+description: ''
+settingValidateCertificates: true
+settingFollowRedirects: true
+settingRequestTimeout: 0

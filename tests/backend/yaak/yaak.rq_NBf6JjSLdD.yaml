@@ -1,0 +1,19 @@
+type: http_request
+model: http_request
+id: rq_NBf6JjSLdD
+createdAt: 2025-04-28T01:17:55.297056
+updatedAt: 2025-04-28T01:19:00.757947
+workspaceId: wk_eJagkGXKjz
+folderId: null
+authentication:
+  token: ${[ auth-token ]}
+authenticationType: bearer
+body: {}
+bodyType: null
+description: ''
+headers: []
+method: POST
+name: Files - Create
+sortPriority: 4000.0
+url: http://localhost:3000/files/file?type=file
+urlParameters: []

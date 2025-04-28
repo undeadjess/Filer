@@ -1,0 +1,23 @@
+type: http_request
+model: http_request
+id: rq_Y89EXAz3os
+createdAt: 2025-04-28T00:28:17.415464
+updatedAt: 2025-04-28T01:18:09.442979
+workspaceId: wk_eJagkGXKjz
+folderId: null
+authentication:
+  token: ${[ auth-token ]}
+authenticationType: bearer
+body: {}
+bodyType: null
+description: ''
+headers:
+- enabled: true
+  name: Authorization
+  value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE3NDU3OTkzNjUsImV4cCI6MTc0NTgwMjk2NX0.RrRZ3UBZbyPO4LLoTBsrfHRAvvd474XzHs_dHnwl32E
+  id: null
+method: GET
+name: Files - List
+sortPriority: 3000.0
+url: http://localhost:3000/files/
+urlParameters: []
